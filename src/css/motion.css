@@ -53,10 +53,14 @@ html[data-reduced-motion="true"] {
   --motion-distance-medium:  0px;
 }
 
-/* Agent-scoped overrides — desktop apps feel snappier */
-html[data-agent="true"] {
-  --motion-duration-slow:    250ms;
-  --motion-duration-slower:  300ms;
+/* Agent-scoped overrides — desktop apps feel snappier.
+ * Wrapped in no-preference + :not([data-reduced-motion]) so reduced-motion
+ * (both OS-level and in-app toggle) always wins over the agent snap. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-agent="true"]:not([data-reduced-motion="true"]) {
+    --motion-duration-slow:    250ms;
+    --motion-duration-slower:  300ms;
+  }
 }
 
 /* ---------- Utility classes ---------- */
