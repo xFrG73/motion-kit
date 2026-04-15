@@ -18,14 +18,28 @@ export const duration = {
 
 export type DurationKey = keyof typeof duration
 
+/**
+ * Easing curves as 4-tuple bezier coefficients.
+ * Format: [x1, y1, x2, y2] — directly consumable by motion-v's `ease` transition prop.
+ * CSS-side consumers read the mirrored `--motion-easing-*` CSS variables in motion.css
+ * which are pre-formatted as `cubic-bezier(...)` strings.
+ */
 export const easing = {
-  out: 'cubic-bezier(0.16, 1, 0.3, 1)',
-  in: 'cubic-bezier(0.7, 0, 0.84, 0)',
-  inOut: 'cubic-bezier(0.65, 0, 0.35, 1)',
-  spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-} as const
+  out: [0.16, 1, 0.3, 1],
+  in: [0.7, 0, 0.84, 0],
+  inOut: [0.65, 0, 0.35, 1],
+  spring: [0.34, 1.56, 0.64, 1],
+} as const satisfies Record<string, readonly [number, number, number, number]>
 
 export type EasingKey = keyof typeof easing
+
+/**
+ * Convenience: format an easing tuple as a CSS `cubic-bezier(...)` string.
+ * Useful when passing an easing to a plain CSS `transition` property dynamically.
+ */
+export function easingToCss(easing: readonly [number, number, number, number]): string {
+  return `cubic-bezier(${easing.join(', ')})`
+}
 
 export const distance = {
   none: 0,
