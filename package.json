@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "vue": "^3.5.0",
-    "motion-v": "^0.15.0"
+    "motion-v": "^2.0.0"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.0",
