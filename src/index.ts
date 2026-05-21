@@ -1,5 +1,5 @@
 // packages/motion-kit/src/index.ts
-// Public surface of @bitsettings/motion-kit.
+// Public surface of @sudothink/motion-kit.
 
 // Tokens
 export {

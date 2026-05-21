@@ -1,6 +1,6 @@
-# @bitsettings/motion-kit
+# @Sudothink/motion-kit
 
-Shared motion design system for BitSettings web and agent.
+Shared motion design system for Sudothink web and agent.
 
 - **Tokens**: durations, easings, distances, stagger — single source of truth
 - **CSS**: variables + reduced-motion overrides + utility classes (`.press`, `.lift`, `.underline-grow`, `.brighten`)

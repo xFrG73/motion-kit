@@ -1,28 +1,21 @@
-<!-- packages/motion-kit/src/primitives/MotionRoute.vue -->
-<script setup lang="ts">
-import { motion, AnimatePresence } from 'motion-v'
-import { duration, easing, distance } from '../tokens'
-import { useRoute } from 'vue-router'
+<!--
+  packages/motion-kit/src/primitives/MotionRoute.vue
 
-// Small wrapper that applies a consistent enter/exit animation to the
-// default slot (typically <NuxtPage />). Uses the current route's fullPath
-// as the AnimatePresence key so page changes trigger the transition.
-const route = useRoute()
-</script>
+  Drop-in replacement for <NuxtPage /> that animates route transitions.
 
+  We delegate to NuxtPage's built-in :transition prop, which internally wraps
+  the resolved page component in a <Transition> via the v-slot pattern. This
+  is the correct place to mount the transition: wrapping <slot /> around a
+  <NuxtPage /> does NOT work because NuxtPage is reactive to the route and
+  swaps its internal child out the moment the URL changes — even while a leave
+  animation is playing — causing the new content to flash before the enter
+  animation plays.
+
+  CSS classes for the "motion-route" transition are defined globally in
+  packages/motion-kit/src/css/motion.css so they inherit the motion-kit tokens
+  (--motion-duration-base, --motion-easing-out, --motion-distance-short) and
+  automatically respect reduced-motion preferences.
+-->
 <template>
-  <AnimatePresence mode="wait">
-    <motion.div
-      :key="route.fullPath"
-      :initial="{ opacity: 0, y: distance.short }"
-      :animate="{ opacity: 1, y: 0 }"
-      :exit="{ opacity: 0 }"
-      :transition="{
-        duration: duration.base / 1000,
-        ease: easing.out,
-      }"
-    >
-      <slot />
-    </motion.div>
-  </AnimatePresence>
+  <NuxtPage :transition="{ name: 'motion-route', mode: 'out-in', appear: true }" />
 </template>

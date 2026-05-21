@@ -130,6 +130,22 @@ html[data-reduced-motion="true"] {
   }
 }
 
+/* ---------- Route transitions (used by <MotionRoute />) ---------- */
+
+.motion-route-enter-active,
+.motion-route-leave-active {
+  transition:
+    opacity var(--motion-duration-base) var(--motion-easing-out),
+    transform var(--motion-duration-base) var(--motion-easing-out);
+}
+.motion-route-enter-from {
+  opacity: 0;
+  transform: translateY(var(--motion-distance-short));
+}
+.motion-route-leave-to {
+  opacity: 0;
+}
+
 /* ---------- Keyframes shared across primitives ---------- */
 
 @keyframes mk-pulse-gentle {
