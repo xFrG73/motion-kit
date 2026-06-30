@@ -32,6 +32,11 @@ const { delayFor } = useStagger(itemsRef, {
 })
 
 const enterY = computed(() => (isReduced.value ? 0 : distance[props.enterDistance]))
+// Under reduced motion the reveal must not depend on the opacity animation:
+// motion-v does not reliably drive `opacity` to 1 when transforms/layout are
+// disabled, leaving items stuck (partially) transparent. Start fully opaque so
+// content is visible immediately, with no fade.
+const enterOpacity = computed(() => (isReduced.value ? 1 : 0))
 </script>
 
 <template>
@@ -41,7 +46,7 @@ const enterY = computed(() => (isReduced.value ? 0 : distance[props.enterDistanc
         v-for="(item, index) in props.items"
         :key="props.keyBy(item)"
         layout
-        :initial="{ opacity: 0, y: enterY }"
+        :initial="{ opacity: enterOpacity, y: enterY }"
         :animate="{ opacity: 1, y: 0 }"
         :exit="{ opacity: 0, y: enterY }"
         :transition="{

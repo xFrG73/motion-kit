@@ -1,7 +1,9 @@
 {
   "name": "@sudothink/motion-kit",
   "version": "0.1.0",
+  "description": "Primitives et tokens d'animation partagés de Sudothink (composables reduced-motion / count-up / sparkline / stagger, durées et easings). Consommé en source par sudothink-web et sudothink-agent.",
   "private": true,
+  "license": "UNLICENSED",
   "type": "module",
   "main": "./src/index.ts",
   "module": "./src/index.ts",
