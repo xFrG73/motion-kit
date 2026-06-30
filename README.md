@@ -8,5 +8,3 @@ Shared motion design system for Sudothink web and agent.
 - **Primitives**: `<MotionList>`, `<MotionNumber>`, `<MotionStatusDot>`, `<MotionSparkline>`, `<MotionRoute>`, `<MotionSkeleton>`
 
 **Import discipline**: consumers never import `motion-v` directly. They use the primitives.
-
-See `docs/superpowers/specs/2026-04-15-motion-design-refresh-design.md` for the design rationale.
